@@ -12,6 +12,7 @@ use PhpParser\Node\Expr\Print_;
 use App\Models\User;
 
 
+
 session_start();
 class UserController extends Controller
 {
@@ -28,7 +29,7 @@ class UserController extends Controller
         if($Result){
             Session::put('user_name',$Result->name);
             Session::put('user_id',$Result->id);
-            return redirect::to('/');
+            return redirect::to('/');   
         }
         else{
             Session::put('false','email hoặc mật khẩu sai , xin nhập lại ');
@@ -47,7 +48,7 @@ class UserController extends Controller
     
     }
     public function dangky(Request $request){
-        $this->validate($request, 
+        $this->validate($request, //kiểm tra form
         [
             'email'=>'required|email|unique:users,email',
             'password'=>'required|min:6|max:20|alpha_num',
@@ -67,19 +68,13 @@ class UserController extends Controller
         
         ]);
 
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password= md5($request->password);
         $user->save();
-        if($user->id ){
-           
-            return redirect::to('login');
-        }
-        else{
-         
-            return redirect()->back();
-        }
+        return redirect()->back()->with('thanhcong','Tạo tài khoảng thành công');
         
     }
    
