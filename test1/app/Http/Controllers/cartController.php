@@ -12,6 +12,7 @@ use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
 class cartController extends Controller
 {
     public function save_cart(Request $request){
+        $userid=Session::get('user_id');
         $productid = $request->id_hidden;
         $quantity = $request->qty;
         $quantity2 = $request->qty2;
@@ -19,8 +20,8 @@ class cartController extends Controller
         $data['product_id']=$product->product_id;
         $data['product_name']=$product->product_name;
         $data['product_gia']=$product->product_gia;
-        
         $data['product_img']=$product->product_image;
+        $data['id_user']= isset($userid)?$userid:0;
         
         $product_cart = DB::table('cart')->where('Product_id',$productid)->get()->first();
         if($quantity2 == null){
@@ -51,11 +52,18 @@ class cartController extends Controller
         return redirect('/cart');
     }
     public function Show_cart(){
-        $product = DB::table('cart')->get();
-        $Sum = DB::table('cart')->sum('total');
-
+        $userid=Session::get('user_id');
+        $product = DB::table('cart')->where('id_user',$userid)->get();
+        $Sum = DB::table('cart')->where('id_user',$userid)->sum('total');
+        if($userid){
         return view('pages.sanpham.cart')->with('Cart_list',$product)->with('total',$Sum);
+        }else{
+            return Redirect::to('/login');
+        }
       
+    }
+    public function check(){
+        return view('checkout');
     }
 
 

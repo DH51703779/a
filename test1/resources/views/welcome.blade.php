@@ -96,11 +96,11 @@
                                         <ul id="navigation">                                                                                                                                     
                                             <li><a href="{{URL::to('/')}}">Trang chủ</a></li>
                                             <!-- <li><a href="Catagori.html">Catagori</a></li> -->
-                                            <li class="hot"><a href="#">Latest</a>
-                                                <ul class="submenu">
-                                                    <li><a href="{{URL::to('/productlist')}}"> Product list</a></li>
-                                                    <li><a href="single-product.html"> Product Details</a></li>
-                                                </ul>
+                                            <li class="hot"><a href="{{URL::to('/productlist')}}">Product list</a>
+                                                <!-- <ul class="submenu">
+                                                    <li><a href="{{URL::to('/productlist')}}"> </a></li>
+                                                    <li><a href="single-product.html"> </a></li>
+                                                </ul> -->
                                             </li>
                                             <!-- <li><a href="blog.html">Blog</a>
                                                 <ul class="submenu">
