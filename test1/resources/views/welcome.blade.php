@@ -22,6 +22,7 @@
             <link rel="stylesheet" href="{{asset('public/frontend/css/slick.css')}}">
             <link rel="stylesheet" href="{{asset('public/frontend/css/nice-select.css')}}">
             <link rel="stylesheet" href="{{asset('public/frontend/css/style.css')}}">
+            <link rel="stylesheet" href="{{asset('public/frontend/fonts/icomoon/style.css')}}">
    </head>
 
    <body>

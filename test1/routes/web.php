@@ -8,6 +8,7 @@ use App\Http\Controllers\cartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\BrandProduct;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,15 @@ use App\Http\Controllers\BrandProduct;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+use App\Http\Controllers\GoogleController;
+Route::get('auth/facebook', [GoogleController::class, 'redirectToFacebook']);
+
+Route::get('auth/facebook/callback', [GoogleController::class, 'facebookSignin']);
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::get('/', function () {
     return view('welcome');
